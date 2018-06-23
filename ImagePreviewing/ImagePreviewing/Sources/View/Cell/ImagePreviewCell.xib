@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImagePreviewCell" id="FXL-qR-LE6" customClass="ImagePreviewCell" customModule="SKUtils" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="213" height="169"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="213" height="169"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="DON-AU-z15">
+                        <rect key="frame" x="97" y="75" width="20" height="20"/>
+                    </activityIndicatorView>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="NuQ-sJ-Ebq">
+                        <rect key="frame" x="0.0" y="0.0" width="213" height="169"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3VO-Ec-BQw">
+                                <rect key="frame" x="0.0" y="0.0" width="213" height="169"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="YV6-Ft-t7t"/>
+                                    <constraint firstAttribute="height" constant="169" id="sHQ-tu-PST"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="3VO-Ec-BQw" secondAttribute="bottom" id="BkG-Zs-mNn"/>
+                            <constraint firstItem="3VO-Ec-BQw" firstAttribute="leading" secondItem="NuQ-sJ-Ebq" secondAttribute="leading" id="Wg8-ww-lIi"/>
+                            <constraint firstAttribute="trailing" secondItem="3VO-Ec-BQw" secondAttribute="trailing" id="e0U-NR-uiP"/>
+                            <constraint firstItem="3VO-Ec-BQw" firstAttribute="top" secondItem="NuQ-sJ-Ebq" secondAttribute="top" id="vu4-7a-ddv"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="FXL-qR-LE6" id="Vli-Uw-4ft"/>
+                        </connections>
+                    </scrollView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="NuQ-sJ-Ebq" firstAttribute="leading" secondItem="FXL-qR-LE6" secondAttribute="leading" id="1gU-u4-3lo"/>
+                <constraint firstItem="DON-AU-z15" firstAttribute="centerY" secondItem="crx-bR-Kd3" secondAttribute="centerY" id="Atr-PR-hbw"/>
+                <constraint firstAttribute="trailing" secondItem="NuQ-sJ-Ebq" secondAttribute="trailing" id="Szo-VG-VO9"/>
+                <constraint firstItem="NuQ-sJ-Ebq" firstAttribute="top" secondItem="FXL-qR-LE6" secondAttribute="top" id="Trj-bp-2bT"/>
+                <constraint firstItem="DON-AU-z15" firstAttribute="centerX" secondItem="crx-bR-Kd3" secondAttribute="centerX" id="ocr-b5-dH5"/>
+                <constraint firstAttribute="bottom" secondItem="NuQ-sJ-Ebq" secondAttribute="bottom" id="ues-Fl-r7q"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="crx-bR-Kd3"/>
+            <size key="customSize" width="213" height="169"/>
+            <connections>
+                <outlet property="activity" destination="DON-AU-z15" id="O3o-VD-2zd"/>
+                <outlet property="imagePreview" destination="3VO-Ec-BQw" id="PVv-u8-ADi"/>
+                <outlet property="imageViewBottomConstraint" destination="BkG-Zs-mNn" id="uUf-7l-Uy7"/>
+                <outlet property="imageViewHeightConstraint" destination="sHQ-tu-PST" id="NmV-89-Him"/>
+                <outlet property="imageViewLeadingConstraint" destination="Wg8-ww-lIi" id="bzh-kp-ZdH"/>
+                <outlet property="imageViewTopConstraint" destination="vu4-7a-ddv" id="Ybw-lC-a3A"/>
+                <outlet property="imageViewTrailingConstraint" destination="e0U-NR-uiP" id="3Rd-8w-Cla"/>
+                <outlet property="imageViewWidthConstraint" destination="YV6-Ft-t7t" id="zPu-cF-Yih"/>
+                <outlet property="scroll" destination="NuQ-sJ-Ebq" id="R6s-nB-kr6"/>
+            </connections>
+            <point key="canvasLocation" x="106.5" y="111.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
