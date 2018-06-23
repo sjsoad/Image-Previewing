@@ -31,7 +31,7 @@ s.framework = "UIKit"
 s.source_files = "ImagePreviewing/**/*.{swift,xib}"
 
 s.resource_bundles = {
-    '{s.name}' => ['{s.name}/**/*.xib']
+    "ImagePreviewing" => ["ImagePreviewing/**/*.xib"]
 }
 
 #10
