@@ -22,10 +22,10 @@ public protocol ImagePreviewOutput {
 
 open class ImagePreviewCellPresenter: DataSourceObjectPresenter {
 
-    private(set) public weak var view: ImagePreviewCellInterface?
+    public private(set) weak var view: ImagePreviewCellInterface?
     
-    private(set) public var reuseIdentifier: String
-    private(set) public var model: ImagePreviewItem
+    public private(set) var reuseIdentifier: String
+    public private(set) var model: ImagePreviewItem
     
     public init(with objectModel: ImagePreviewItem, cellIdentifier: String) {
         self.model = objectModel

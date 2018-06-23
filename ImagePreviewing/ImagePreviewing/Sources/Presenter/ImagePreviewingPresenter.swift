@@ -24,9 +24,9 @@ public protocol ImagePreviewingOutput {
 
 open class ImagePreviewingPresenter: NSObject, ImagePreviewingOutput {
     
-    private(set) public weak var view: ImagePreviewingInterface?
+    public private(set) weak var view: ImagePreviewingInterface?
     
-    private(set) public var previewItems: [ImagePreviewItem]
+    public private(set) var previewItems: [ImagePreviewItem]
     
     private var initialItemIndex: Int
     private var dataSource: CollectionViewArrayDataSource = {

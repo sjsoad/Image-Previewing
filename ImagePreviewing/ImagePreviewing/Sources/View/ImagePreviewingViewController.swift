@@ -13,7 +13,7 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
 
     public var presenter: ImagePreviewingOutput?
 
-    @IBOutlet private(set) public weak var collectionView: UICollectionView!
+    @IBOutlet public private(set) weak var collectionView: UICollectionView!
     
     private var sectionInsets: UIEdgeInsets = .zero
 

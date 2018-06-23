@@ -19,17 +19,17 @@ open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Re
     
     public var presenter: ImagePreviewOutput?
     
-    @IBOutlet private(set) public weak var activity: UIActivityIndicatorView!
-    @IBOutlet private(set) public weak var scroll: UIScrollView!
-    @IBOutlet private(set) public weak var imagePreview: UIImageView!
+    @IBOutlet public private(set) weak var activity: UIActivityIndicatorView!
+    @IBOutlet public private(set) weak var scroll: UIScrollView!
+    @IBOutlet public private(set) weak var imagePreview: UIImageView!
     
-    @IBOutlet private(set) public weak var imageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) public weak var imageViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) public weak var imageViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) public weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
-    @IBOutlet private(set) public weak var imageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet private(set) public weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet public private(set) weak var imageViewHeightConstraint: NSLayoutConstraint!
     
     override open func prepareForReuse() {
         super.prepareForReuse()
