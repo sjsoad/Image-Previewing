@@ -6,18 +6,18 @@
 
 `open class ImagePreviewItem: NSObject {`  
 
-    `public var image: UIImage?`  
-    `public var placeholderImage: UIImage?`  
-    `public var imageURL: URL?`  
+    public var image: UIImage?  
+    public var placeholderImage: UIImage?  
+    public var imageURL: URL?  
     
-    `public init(image: UIImage?) {`  
-        `self.image = image`  
-    `}`  
+    public init(image: UIImage?) {  
+        self.image = image  
+    }  
     
-    `public init(imageURL: URL?, placeholderImage: UIImage? = nil) {`  
-        `self.imageURL = imageURL`  
-        `self.placeholderImage = placeholderImage`  
-    `}`  
+    public init(imageURL: URL?, placeholderImage: UIImage? = nil) {  
+        self.imageURL = imageURL  
+        self.placeholderImage = placeholderImage  
+    }  
     
 `}`  
 
