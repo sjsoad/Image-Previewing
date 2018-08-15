@@ -45,10 +45,10 @@ open class ImagePreviewingPresenter: NSObject, ImagePreviewingOutput {
     
     open func createDataSourseObjects(from previewItems: [ImagePreviewItem]) -> [DataSourceObjectPresenter] {
         var items = [DataSourceObjectPresenter]()
-        for item in previewItems {
-            let dataSourceModel = ImagePreviewCellPresenter(with: item, cellIdentifier: ImagePreviewCell.reuseIdentifier)
+        previewItems.forEach({
+            let dataSourceModel = ImagePreviewCellPresenter(with: $0, cellIdentifier: ImagePreviewCell.reuseIdentifier)
             items.append(dataSourceModel)
-        }
+        })
         return items
     }
     
