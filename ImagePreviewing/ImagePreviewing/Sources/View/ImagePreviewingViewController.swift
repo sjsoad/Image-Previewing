@@ -10,13 +10,13 @@ import UIKit
 import SKDataSources
 
 open class ImagePreviewingViewController: UIViewController, ImagePreviewingInterface, UICollectionViewDelegateFlowLayout {
-
+    
     public var presenter: ImagePreviewingOutput?
-
+    
     @IBOutlet public private(set) weak var collectionView: UICollectionView!
     
     private var sectionInsets: UIEdgeInsets = .zero
-
+    
     // MARK: - Init -
     
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -29,13 +29,13 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
     }
     
     // MARK: - Lifecycle -
-
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         setup(collectionView)
         presenter?.viewDidLoad()
     }
-
+    
     // MARK: - Public -
     
     open func setup(_ collectionView: UICollectionView) {
@@ -70,7 +70,7 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
     // MARK: - UICollectionViewDelegateFlowLayout -
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.bounds.height - sectionInsets.top - sectionInsets.bottom
         let width = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
         return CGSize(width: width, height: height)

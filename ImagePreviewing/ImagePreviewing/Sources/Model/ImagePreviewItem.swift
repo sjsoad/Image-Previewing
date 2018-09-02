@@ -9,7 +9,7 @@
 import UIKit
 
 open class ImagePreviewItem: NSObject {
-
+    
     public var image: UIImage?
     public var placeholderImage: UIImage?
     public var imageURL: URL?
@@ -24,3 +24,4 @@ open class ImagePreviewItem: NSObject {
     }
     
 }
+

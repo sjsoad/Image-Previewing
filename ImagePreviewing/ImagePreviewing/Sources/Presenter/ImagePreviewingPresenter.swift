@@ -70,3 +70,4 @@ open class ImagePreviewingPresenter: NSObject, ImagePreviewingOutput {
     }
     
 }
+
