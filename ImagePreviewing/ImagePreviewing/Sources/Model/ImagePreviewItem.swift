@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ImagePreviewItem: NSObject {
+public struct ImagePreviewItem {
     
     public var image: UIImage?
     public var placeholderImage: UIImage?

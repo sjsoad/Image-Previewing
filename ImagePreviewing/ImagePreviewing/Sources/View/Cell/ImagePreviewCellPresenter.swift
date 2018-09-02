@@ -24,8 +24,8 @@ open class ImagePreviewCellPresenter: DataSourceObjectPresenter {
 
     public private(set) weak var view: ImagePreviewCellInterface?
     
-    public private(set) var reuseIdentifier: String
-    public private(set) var model: ImagePreviewItem
+    public let reuseIdentifier: String
+    public let model: ImagePreviewItem
     
     public init(with objectModel: ImagePreviewItem, cellIdentifier: String) {
         self.model = objectModel
