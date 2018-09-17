@@ -12,7 +12,7 @@ import Foundation
 import SKDataSources
 import AlamofireImage
 
-open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Reusable, Nibable, ImagePreviewCellInterface, UIScrollViewDelegate {
+open class ImagePreviewCell: UICollectionViewCell, UIScrollViewDelegate, ImagePreviewCellInterface {
     
     private var miminumZoomScale: CGFloat = 1
     private var maximumZoomScale: CGFloat = 3
@@ -34,8 +34,8 @@ open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Re
     override open func prepareForReuse() {
         super.prepareForReuse()
         imagePreview.af_cancelImageRequest()
-        activity.startAnimating()
         imagePreview.image = nil
+        activity.startAnimating()
     }
     
     override open func awakeFromNib() {
@@ -43,71 +43,62 @@ open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Re
         addDoubleTapGesture()
     }
     
-    // MARK: - Public -
-    
-    @objc private func doubleTapped(_ sender: UITapGestureRecognizer) {
-        guard scroll.zoomScale < scroll.maximumZoomScale else {
-            resetZoomScale()
-            return }
-        let location = sender.location(in: imagePreview)
-        let rect = CGRect(origin: location, size: .zero)
-        scroll.zoom(to: rect, animated: true)
-    }
-    
     // MARK: - Private -
     
+    private var yOffset: CGFloat {
+        return max(0, (bounds.size.height - imagePreview.frame.height) * 0.5)
+    }
+
+    private var xOffset: CGFloat {
+        return max(0, (bounds.size.width - imagePreview.frame.width) * 0.5)
+    }
+    
+    private func maximumZoom(for image: UIImage) -> CGFloat {
+        let aspectWidth = image.calculateAspectWidth(for: bounds.size.width)
+        let aspectHeight = image.calculateAspectHeight(for: bounds.size.height)
+        let minAspectRation = image.minAspectRation(aspectWidth, aspectHeight)
+        return max(minAspectRation, maximumZoomScale)
+    }
+    
+    @objc private func doubleTapped(_ sender: UITapGestureRecognizer) {
+        guard scroll.canZoom else {
+            scroll.resetZoom()
+            return }
+        scroll.zoom(to: sender.locationRect, animated: true)
+    }
+    
     private func addDoubleTapGesture() {
-        imagePreview.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
         tap.numberOfTapsRequired = 2
         imagePreview.addGestureRecognizer(tap)
     }
     
-    private func  resetZoomScale() {
-        scroll.setZoomScale(scroll.minimumZoomScale, animated: true)
-    }
-    
     private func layoutImage() {
         layoutIfNeeded()
-        let yOffset = max(0, (bounds.size.height - imagePreview.frame.height) * 0.5)
         imageViewTopConstraint.constant = yOffset
         imageViewBottomConstraint.constant = yOffset
-        let xOffset = max(0, (bounds.size.width - imagePreview.frame.width) * 0.5)
         imageViewLeadingConstraint.constant = xOffset
         imageViewTrailingConstraint.constant = xOffset
         layoutIfNeeded()
     }
     
-    private func calculateZoomScale(for image: UIImage) {
-        let size = image.size(thatFits: bounds.size)
+    private func setupZoom(for image: UIImage) {
         scroll.minimumZoomScale = miminumZoomScale
-        var calculatedMaximumZoomScale = maximumZoomScale
-        if size.width < size.height {
-            calculatedMaximumZoomScale = (bounds.size.width / size.width)
-        } else {
-            calculatedMaximumZoomScale = (bounds.size.height / size.height)
-        }
-        scroll.maximumZoomScale = max(calculatedMaximumZoomScale, maximumZoomScale)
+        scroll.maximumZoomScale = maximumZoom(for: image)
     }
     
-    private func calculateSize(of image: UIImage) {
+    private func setupSize(of image: UIImage) {
         let size = image.size(thatFits: bounds.size)
         imageViewWidthConstraint.constant = size.width
         imageViewHeightConstraint.constant = size.height
         layoutIfNeeded()
     }
     
-    private func reset(for image: UIImage) {
-        calculateSize(of: image)
-        calculateZoomScale(for: image)
-        resetZoomScale()
+    private func update(for image: UIImage) {
+        setupSize(of: image)
+        setupZoom(for: image)
+        scroll.resetZoom()
         layoutImage()
-    }
-    
-    // MARK: - DataSourceObjectInterface -
-    
-    public func set(presenter: DataSourceObjectPresenter) {
-        self.presenter = presenter as? ImagePreviewOutput
     }
     
     // MARK: - ImagePreviewCellInterface -
@@ -115,14 +106,13 @@ open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Re
     public func set(_ image: UIImage) {
         imagePreview.image = image
         activity.stopAnimating()
-        reset(for: image)
+        update(for: image)
     }
 
     public func set(_ imageURL: URL, placeholderImage: UIImage?) {
         imagePreview.af_setImage(withURL: imageURL, placeholderImage: placeholderImage) { [weak self] (response) in
             guard let image = response.result.value else { return }
-            self?.activity.stopAnimating()
-            self?.reset(for: image)
+            self?.set(image)
         }
     }
     
@@ -138,38 +128,12 @@ open class ImagePreviewCell: UICollectionViewCell, DataSourceObjectInterface, Re
     
 }
 
-private extension UIImage {
+// MARK: - ViewType -
 
-        func size(thatFits size: CGSize) -> CGSize {
-            let aspectWidth = calculateAspectWidth(width: size.width)
-            let aspectHeight = calculateAspectHeight(height: size.height)
-            let aspectRatio = minAspectRation(aspectWidth: aspectWidth, aspectHeight: aspectHeight)
-            return newSize(with: aspectRatio)
-        }
-        
-        // MARK: - Private -
-        
-        private func calculateAspectWidth(width: CGFloat) -> CGFloat {
-            return width / size.width
-        }
-        
-        private func calculateAspectHeight(height: CGFloat) -> CGFloat {
-            return height / size.height
-        }
-        
-        private func minAspectRation(aspectWidth: CGFloat, aspectHeight: CGFloat) -> CGFloat {
-            return min(aspectWidth, aspectHeight)
-        }
-        
-        private func maxAspectRation(aspectWidth: CGFloat, aspectHeight: CGFloat) -> CGFloat {
-            return max(aspectWidth, aspectHeight)
-        }
-        
-        private func newSize(with aspectRatio: CGFloat) -> CGSize {
-            var newSize = CGSize.zero
-            newSize.width = size.width * aspectRatio
-            newSize.height = size.height * aspectRatio
-            return newSize
-        }
+extension ImagePreviewCell: ViewType, Reusable, Nibable {
+    
+    public func set(presenter: PresenterType) {
+        self.presenter = presenter as? ImagePreviewOutput
+    }
     
 }

@@ -8,11 +8,11 @@
 
 import UIKit
 
-public struct ImagePreviewItem {
+public class ImagePreviewItem: ImagePreviewRepresentable {
     
-    public var image: UIImage?
-    public var placeholderImage: UIImage?
-    public var imageURL: URL?
+    public private(set) var image: UIImage?
+    public private(set) var placeholderImage: UIImage?
+    public private(set) var imageURL: URL?
     
     public init(image: UIImage?) {
         self.image = image

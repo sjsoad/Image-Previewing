@@ -15,19 +15,6 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
     
     @IBOutlet public private(set) weak var collectionView: UICollectionView!
     
-    private var sectionInsets: UIEdgeInsets = .zero
-    
-    // MARK: - Init -
-    
-    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let bundle = Bundle(for: ImagePreviewingViewController.self)
-        super.init(nibName: nibNameOrNil, bundle: bundle)
-    }
-    
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Lifecycle -
     
     override open func viewDidLoad() {
@@ -42,24 +29,20 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
         let bundle = Bundle(for: ImagePreviewCell.self)
         let cellNib = UINib(nibName: ImagePreviewCell.nibName, bundle: bundle)
         collectionView.register(cellNib, forCellWithReuseIdentifier: ImagePreviewCell.reuseIdentifier)
-        collectionView.isPagingEnabled = true
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        flowLayout.sectionInset = .zero
-        flowLayout.scrollDirection = .horizontal
+        collectionView.flowLayout?.sectionInset = .zero
+        collectionView.flowLayout?.scrollDirection = .horizontal
     }
     
     // MARK: - ImagePreviewingInterface -
     
-    public func reload(with dataSource: CollectionViewArrayDataSource) {
+    public func reload(with dataSource: CollectionViewArrayDataSourceRepresentable) {
         collectionView.dataSource = dataSource
         collectionView.reloadData()
     }
     
-    public func scroll(toItemAt index: Int, aniamted: Bool) {
+    public func scroll(toItemAt indexPath: IndexPath, aniamted: Bool) {
         collectionView.layoutIfNeeded()
-        let indexPath = IndexPath(item: index, section: 0)
-        guard collectionView.numberOfSections > indexPath.section, indexPath.section >= 0,
-            collectionView.numberOfItems(inSection: indexPath.section) > indexPath.row, indexPath.row >= 0 else { return }
+        guard collectionView.contains(indexPath) else { return }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: aniamted)
     }
     
@@ -71,9 +54,7 @@ open class ImagePreviewingViewController: UIViewController, ImagePreviewingInter
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.bounds.height - sectionInsets.top - sectionInsets.bottom
-        let width = collectionView.bounds.width - sectionInsets.left - sectionInsets.right
-        return CGSize(width: width, height: height)
+        return collectionView.maxItemSize
     }
     
 }

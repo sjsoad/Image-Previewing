@@ -20,21 +20,30 @@ public protocol ImagePreviewOutput {
     
 }
 
-open class ImagePreviewCellPresenter: DataSourceObjectPresenter {
+open class ImagePreviewCellPresenter {
 
     public private(set) weak var view: ImagePreviewCellInterface?
-    
     public let reuseIdentifier: String
-    public let model: ImagePreviewItem
+    public let model: ImagePreviewRepresentable
     
-    public init(with objectModel: ImagePreviewItem, cellIdentifier: String) {
+    public init(with objectModel: ImagePreviewRepresentable, cellIdentifier: String) {
         self.model = objectModel
         self.reuseIdentifier = cellIdentifier
     }
+
+}
+
+// MARK: - ImagePreviewOutput -
+
+extension ImagePreviewCellPresenter: ImagePreviewOutput {
     
-    // MARK: - DataSourceObjectPresenter -
+}
+
+// MARK: - ViewType -
+
+extension ImagePreviewCellPresenter: PresenterType {
     
-    public func set(view: UIView) {
+    public func set(view: ViewType) {
         self.view = view as? ImagePreviewCellInterface
     }
     
@@ -45,11 +54,5 @@ open class ImagePreviewCellPresenter: DataSourceObjectPresenter {
             view?.set(url, placeholderImage: model.placeholderImage)
         }
     }
-    
-}
-
-// MARK: - ImagePreviewOutput -
-
-extension ImagePreviewCellPresenter: ImagePreviewOutput {
     
 }
