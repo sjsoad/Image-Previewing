@@ -28,7 +28,9 @@ open class ImagePreviewingPresenter: NSObject, ImagePreviewingOutput {
     public private(set) var previewItems: [ImagePreviewRepresentable]
     public private(set) var initialItemIndex: Int
     
-    private var dataSource: CollectionViewArrayDataSourceRepresentable = CollectionViewArrayDataSource(with: [])
+    private var dataSource: CollectionViewArrayDataSourceRepresentable = {
+        return CollectionViewArrayDataSource(with: [DefaultSection(with: [])])
+    }()
     
     public init(with view: ImagePreviewingInterface, previewItems: [ImagePreviewRepresentable], initialItemIndex: Int) {
         self.view = view
