@@ -53,7 +53,7 @@ open class ImagePreviewingPresenter: NSObject, ImagePreviewingOutput {
     // MARK: - ImagePreviewingPresenterOutput -
     
     open func viewDidLoad() {
-        dataSource.append(with: dataSourseObjects(from: previewItems), toSectionAt: 0, handler: { [weak self] (indices) in
+        dataSource.append(with: dataSourseObjects(from: previewItems), toSectionAt: 0, handler: { [weak self] (_) in
             guard let `self` = self else { return }
             self.view?.reload(with: self.dataSource)
             let indexPath = IndexPath(item: self.initialItemIndex, section: 0)
