@@ -2,14 +2,14 @@ Pod::Spec.new do |s|
 
 # 1
 s.platform = :ios
-s.swift_version = '4.0'
+s.swift_version = '4.2'
 s.ios.deployment_target = '11.0'
 s.name = "SKImagePreviewing"
 s.summary = "SKImagePreviewing for displaying set of images"
 s.requires_arc = true
 
 # 2
-s.version = "0.0.4"
+s.version = "0.0.5"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
