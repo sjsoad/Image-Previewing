@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A532EADC21523F0E00CCA38F /* ImagePreviewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532EAD621523F0E00CCA38F /* ImagePreviewRepresentable.swift */; };
+		A532EADD21523F0E00CCA38F /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532EAD821523F0E00CCA38F /* UIScrollView.swift */; };
+		A532EADE21523F0E00CCA38F /* UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532EAD921523F0E00CCA38F /* UIGestureRecognizer.swift */; };
+		A532EADF21523F0E00CCA38F /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532EADA21523F0E00CCA38F /* UICollectionView.swift */; };
+		A532EAE021523F0E00CCA38F /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532EADB21523F0E00CCA38F /* UIImage.swift */; };
 		A59C85A620DE1BD90049BEA0 /* ImagePreviewing.h in Headers */ = {isa = PBXBuildFile; fileRef = A59C85A420DE1BD90049BEA0 /* ImagePreviewing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A59C85B920DE1C210049BEA0 /* ImagePreviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59C85AF20DE1C200049BEA0 /* ImagePreviewItem.swift */; };
 		A59C85BA20DE1C210049BEA0 /* ImagePreviewingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59C85B120DE1C200049BEA0 /* ImagePreviewingViewController.swift */; };
@@ -18,6 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A532EAD621523F0E00CCA38F /* ImagePreviewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePreviewRepresentable.swift; sourceTree = "<group>"; };
+		A532EAD821523F0E00CCA38F /* UIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		A532EAD921523F0E00CCA38F /* UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer.swift; sourceTree = "<group>"; };
+		A532EADA21523F0E00CCA38F /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		A532EADB21523F0E00CCA38F /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		A59C85A120DE1BD90049BEA0 /* ImagePreviewing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImagePreviewing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A59C85A420DE1BD90049BEA0 /* ImagePreviewing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePreviewing.h; sourceTree = "<group>"; };
 		A59C85A520DE1BD90049BEA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +51,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A532EAD521523F0E00CCA38F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A532EAD621523F0E00CCA38F /* ImagePreviewRepresentable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A532EAD721523F0E00CCA38F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A532EAD821523F0E00CCA38F /* UIScrollView.swift */,
+				A532EAD921523F0E00CCA38F /* UIGestureRecognizer.swift */,
+				A532EADA21523F0E00CCA38F /* UICollectionView.swift */,
+				A532EADB21523F0E00CCA38F /* UIImage.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A59C859720DE1BD90049BEA0 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +99,8 @@
 		A59C85AC20DE1BEF0049BEA0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A532EAD721523F0E00CCA38F /* Extensions */,
+				A532EAD521523F0E00CCA38F /* Protocols */,
 				A59C85AE20DE1C200049BEA0 /* Model */,
 				A59C85B720DE1C200049BEA0 /* Presenter */,
 				A59C85B020DE1C200049BEA0 /* View */,
@@ -202,10 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59C85BF20DE1C210049BEA0 /* ImagePreviewingPresenter.swift in Sources */,
+				A532EAE021523F0E00CCA38F /* UIImage.swift in Sources */,
+				A532EADE21523F0E00CCA38F /* UIGestureRecognizer.swift in Sources */,
 				A59C85BC20DE1C210049BEA0 /* ImagePreviewCell.swift in Sources */,
+				A532EADF21523F0E00CCA38F /* UICollectionView.swift in Sources */,
 				A59C85BA20DE1C210049BEA0 /* ImagePreviewingViewController.swift in Sources */,
 				A59C85B920DE1C210049BEA0 /* ImagePreviewItem.swift in Sources */,
 				A59C85BD20DE1C210049BEA0 /* ImagePreviewCellPresenter.swift in Sources */,
+				A532EADD21523F0E00CCA38F /* UIScrollView.swift in Sources */,
+				A532EADC21523F0E00CCA38F /* ImagePreviewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
